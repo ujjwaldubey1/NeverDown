@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Acme Portfolio Reader — NeverDown SDK demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="atmosphere" aria-hidden="true"></div>
+  <header class="hero">
+    <p class="eyebrow">Demo dApp · new user installs the SDK</p>
+    <h1>Acme <em>Portfolio</em> Reader</h1>
+    <p class="lede">
+      One RPC URL. Mode A dies when the upstream dies.
+      Mode B keeps the <strong>same NeverDown gateway URL</strong> through live failover.
+    </p>
+    <ul class="labels" aria-label="Video labels">
+      <li>Stable gateway RPC</li>
+      <li>Live failover</li>
+      <li>SDK monitor</li>
+      <li>Optional policy-gated procure + evidence</li>
+      <li>Deny-before-sign</li>
+    </ul>
+  </header>
+
+  <main>
+    <section class="board" aria-label="Live RPC health">
+      <div class="mode-row">
+        <p class="section-kicker">RPC mode</p>
+        <div class="mode-toggle" role="group" aria-label="RPC mode">
+          <button type="button" id="modeDirect" data-mode="direct" class="mode-btn">Direct upstream</button>
+          <button type="button" id="modeGateway" data-mode="gateway" class="mode-btn">NeverDown gateway</button>
+        </div>
+        <p class="rpc-url" id="rpcUrl">…</p>
+      </div>
+
+      <div class="status-plane" id="statusPlane" data-health="DEGRADED">
+        <p class="status-label">Live status</p>
+        <p class="status-value" id="healthValue">DEGRADED</p>
+        <p class="status-sub" id="healthSub">waiting for first probe</p>
+      </div>
+
+      <dl class="metrics">
+        <div>
+          <dt>chainId</dt>
+          <dd id="chainId">—</dd>
+        </div>
+        <div>
+          <dt>blockNumber</dt>
+          <dd id="blockNumber">—</dd>
+        </div>
+        <div>
+          <dt>latency</dt>
+          <dd id="latency">—</dd>
+        </div>
+        <div>
+          <dt>error</dt>
+          <dd id="errorText">—</dd>
+        </div>
+        <div>
+          <dt>fake balance read</dt>
+          <dd id="balance">—</dd>
+        </div>
+        <div>
+          <dt>gateway active</dt>
+          <dd id="gatewayActive">—</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="actions" aria-label="Demo controls">
+      <p class="section-kicker">Camera controls</p>
+      <div class="btn-row">
+        <button type="button" id="btnOutage" class="warn">Simulate outage</button>
+        <button type="button" id="btnRestore" class="ghost">Restore</button>
+        <button type="button" id="btnDeny" class="ghost">Deny bad seller</button>
+        <button type="button" id="btnProcure" class="accent">Optional procure</button>
+        <button type="button" id="btnRejectKey" class="ghost">Show create() rejects spend key</button>
+      </div>
+      <p class="hint" id="actionHint">Mode A outage breaks the dApp. Mode B outage should stay OK on the same gateway URL.</p>
+    </section>
+
+    <section class="evidence" id="evidence" hidden>
+      <p class="section-kicker">Procure evidence</p>
+      <p id="evidenceStatus"></p>
+      <a id="hashscanLink" href="#" target="_blank" rel="noreferrer">Open HashScan</a>
+    </section>
+
+    <section class="log-panel" aria-label="Event log">
+      <div class="log-head">
+        <p class="section-kicker">Event log</p>
+        <span id="sdkPill" class="pill">SDK…</span>
+      </div>
+      <ol id="eventLog" class="event-log"></ol>
+    </section>
+  </main>
+
+  <footer>
+    <span>Imports <code>@neverdown/sdk</code> + <code>@neverdown/sdk/status</code> server-side only</span>
+    <span>Spend keys stay in <code>PAYMENT_WORKER_ENV_FILE</code></span>
+  </footer>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>

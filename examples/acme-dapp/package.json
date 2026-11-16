@@ -1,0 +1,24 @@
+{
+  "name": "@neverdown/acme-dapp-example",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Acme Portfolio Reader — demo dApp that installs @neverdown/sdk (Mode A pain / Mode B survive)",
+  "type": "module",
+  "scripts": {
+    "dev": "node --import tsx src/server.ts",
+    "start": "node --import tsx src/server.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "echo \"ok\""
+  },
+  "dependencies": {
+    "@neverdown/sdk": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  }
+}
