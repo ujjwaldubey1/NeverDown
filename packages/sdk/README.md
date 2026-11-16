@@ -12,7 +12,9 @@ npm install @neverdown/sdk
 
 The package depends on `@neverdown/core`. For a local monorepo checkout, run `pnpm install` at the repository root.
 
-The packages are not yet on npm. To try the built artifacts now, run `pnpm --filter @neverdown/core build`, `pnpm --filter @neverdown/sdk build`, and `pnpm pack` in each package directory. Install both generated tarballs into a separate Node project before publishing.
+Copy host-side env from [`env.host.example`](./env.host.example) into the app that calls `NeverDown.create`. That file has no spend keys — put `HEDERA_SPEND_KEY` / `HEDERA_OPERATOR_KEY` only in the mode-`0600` `PAYMENT_WORKER_ENV_FILE`.
+
+Published package: `@neverdown/sdk` on npm. For local tarball checks, run `pnpm --filter @neverdown/core build`, `pnpm --filter @neverdown/sdk build`, and `pnpm pack` in each package directory.
 
 ## Read-only example
 

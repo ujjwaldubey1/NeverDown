@@ -5,11 +5,11 @@
   "description": "NeverDown — Autonomous Resilience Operator for Web3",
   "packageManager": "pnpm@9.15.0",
   "scripts": {
-    "build": "pnpm -r run build",
+    "build": "npm run build --workspace=@neverdown/core && npm run build --workspace=@neverdown/sdk && npm run build --workspace=@neverdown/sellers && npm run build --workspace=@neverdown/gateway && npm run build --workspace=@neverdown/web",
     "heroku-postbuild": "pnpm --filter @neverdown/sellers build",
-    "dev": "pnpm -r --parallel run dev",
-    "lint": "pnpm -r run lint",
-    "typecheck": "pnpm -r run typecheck",
+    "dev": "npm run dev --workspace=@neverdown/web",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
     "pay:once": "node scripts/run-with-env.mjs pay-once scripts/pay-once.ts",
     "policy:smoke": "node scripts/run-with-env.mjs policy-smoke scripts/policy-smoke.ts",
     "hcs:smoke": "node scripts/run-with-env.mjs hcs-smoke scripts/hcs-smoke.ts",
@@ -39,7 +39,16 @@
     "sdk-consumer:procure": "node scripts/run-with-env.mjs agent examples/neverdown-sdk-consumer/src/procure.ts",
     "sdk-consumer:deny": "node scripts/run-with-env.mjs agent examples/neverdown-sdk-consumer/src/deny.ts",
     "sdk-consumer:features": "node scripts/run-with-env.mjs agent examples/neverdown-sdk-consumer/src/feature-matrix.ts",
-    "sdk-consumer:features:procure": "node scripts/run-with-env.mjs agent examples/neverdown-sdk-consumer/src/feature-matrix.ts --procure"
+    "sdk-consumer:features:procure": "node scripts/run-with-env.mjs agent examples/neverdown-sdk-consumer/src/feature-matrix.ts --procure",
+    "outage-lab": "node scripts/run-with-env.mjs gateway scripts/outage-lab.mts",
+    "acme-demo": "node scripts/run-with-env.mjs agent examples/acme-dapp/src/server.ts",
+    "dev:all": "pnpm -r --parallel run dev",
+    "start": "npm run start --workspace=@neverdown/web",
+    "build:web": "pnpm --filter @neverdown/web build",
+    "test": "npm run test --workspace=@neverdown/core && npm run test --workspace=@neverdown/sellers && npm run test --workspace=@neverdown/gateway && npm run test --workspace=@neverdown/web",
+    "test:web": "npm run test --workspace=@neverdown/web",
+    "test:smoke": "node scripts/smoke-web.mjs",
+    "check:local": "pnpm typecheck && pnpm lint && pnpm test"
   },
   "devDependencies": {
     "tsx": "^4.20.0"
@@ -51,6 +60,15 @@
     }
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22.5.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "examples/*"
+  ],
+  "overrides": {
+    "@hiero-ledger/sdk": "2.90.1",
+    "@hiero-ledger/proto": "2.32.0"
   }
 }

@@ -75,10 +75,26 @@ importers:
   apps/web:
     dependencies:
       '@neverdown/core':
-        specifier: workspace:*
+        specifier: 0.1.0
         version: link:../../packages/core
       '@neverdown/sdk':
-        specifier: workspace:*
+        specifier: 0.1.0
+        version: link:../../packages/sdk
+    devDependencies:
+      '@types/node':
+        specifier: ^22.15.0
+        version: 22.20.5
+      tsx:
+        specifier: ^4.20.0
+        version: 4.23.15
+      typescript:
+        specifier: ^5.9.0
+        version: 5.9.3
+
+  examples/acme-dapp:
+    dependencies:
+      '@neverdown/sdk':
+        specifier: 0.1.0
         version: link:../../packages/sdk
     devDependencies:
       '@types/node':
@@ -94,7 +110,7 @@ importers:
   examples/neverdown-sdk-consumer:
     dependencies:
       '@neverdown/sdk':
-        specifier: workspace:*
+        specifier: 0.1.0
         version: link:../../packages/sdk
     devDependencies:
       '@types/node':
@@ -150,7 +166,7 @@ importers:
   packages/sdk:
     dependencies:
       '@neverdown/core':
-        specifier: workspace:^
+        specifier: 0.1.0
         version: link:../core
     devDependencies:
       '@types/node':

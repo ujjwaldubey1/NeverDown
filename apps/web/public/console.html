@@ -551,14 +551,18 @@ void loadPolicy();
 const themeToggleButton = document.getElementById('themeToggle');
 const themeCurtain = document.getElementById('themeCurtain');
 let themeChanging = false;
+function readStoredTheme() {
+  try { return window.localStorage.getItem('nd-theme'); } catch { return null; }
+}
 function applyTheme(theme) {
-  document.documentElement.setAttribute('data-theme', theme);
-  document.documentElement.style.colorScheme = theme === 'dark' ? 'dark' : 'light';
-  localStorage.setItem('nd-theme', theme);
+  const selected = theme === 'dark' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', selected);
+  document.documentElement.style.colorScheme = selected;
+  try { window.localStorage.setItem('nd-theme', selected); } catch { /* Storage may be blocked. */ }
   themeToggleButton.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
   themeToggleButton.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
 }
-const savedTheme = localStorage.getItem('nd-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+const savedTheme = readStoredTheme() || (window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 applyTheme(savedTheme);
 themeToggleButton.addEventListener('click', () => {
   if (themeChanging) return;
