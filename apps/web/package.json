@@ -13,8 +13,8 @@
     "test": "node --import tsx --test test/*.test.ts"
   },
   "dependencies": {
-    "@neverdown/core": "workspace:*",
-    "@neverdown/sdk": "workspace:*"
+    "@neverdown/core": "0.1.0",
+    "@neverdown/sdk": "0.1.0"
   },
   "devDependencies": {
     "tsx": "^4.20.0",

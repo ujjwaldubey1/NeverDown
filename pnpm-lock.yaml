@@ -75,10 +75,10 @@ importers:
   apps/web:
     dependencies:
       '@neverdown/core':
-        specifier: workspace:*
+        specifier: 0.1.0
         version: link:../../packages/core
       '@neverdown/sdk':
-        specifier: workspace:*
+        specifier: 0.1.0
         version: link:../../packages/sdk
     devDependencies:
       '@types/node':
@@ -94,7 +94,7 @@ importers:
   examples/acme-dapp:
     dependencies:
       '@neverdown/sdk':
-        specifier: workspace:*
+        specifier: 0.1.0
         version: link:../../packages/sdk
     devDependencies:
       '@types/node':
@@ -110,7 +110,7 @@ importers:
   examples/neverdown-sdk-consumer:
     dependencies:
       '@neverdown/sdk':
-        specifier: workspace:*
+        specifier: 0.1.0
         version: link:../../packages/sdk
     devDependencies:
       '@types/node':
@@ -166,7 +166,7 @@ importers:
   packages/sdk:
     dependencies:
       '@neverdown/core':
-        specifier: workspace:^
+        specifier: 0.1.0
         version: link:../core
     devDependencies:
       '@types/node':

@@ -98,7 +98,7 @@ function beginStream(res: ServerResponse) {
   return {
     write,
     async step(partial: Omit<StepEvent, "type" | "status"> & { status?: StepEvent["status"] }) {
-      const running: StepEvent = { type: "step", status: "running", ...partial, status: "running" };
+      const running: StepEvent = { type: "step", ...partial, status: "running" };
       write(running);
       await sleep(STEP_MS);
     },

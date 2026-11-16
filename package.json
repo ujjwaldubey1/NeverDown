@@ -5,7 +5,7 @@
   "description": "NeverDown — Autonomous Resilience Operator for Web3",
   "packageManager": "pnpm@9.15.0",
   "scripts": {
-    "build": "npm run build --workspace=@neverdown/core && npm run build --workspace=@neverdown/sellers && npm run build --workspace=@neverdown/gateway && npm run build --workspace=@neverdown/web",
+    "build": "npm run build --workspace=@neverdown/core && npm run build --workspace=@neverdown/sdk && npm run build --workspace=@neverdown/sellers && npm run build --workspace=@neverdown/gateway && npm run build --workspace=@neverdown/web",
     "heroku-postbuild": "pnpm --filter @neverdown/sellers build",
     "dev": "npm run dev --workspace=@neverdown/web",
     "lint": "npm run lint --workspaces --if-present",

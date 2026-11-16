@@ -4,6 +4,7 @@ export type GatewaySnapshot = {
   status: {
     active: string | null;
     routingMode?: string;
+    redundancy?: boolean;
     providers: Array<{ id: string; healthy: boolean; reason?: string | null }>;
     recentEvents?: Array<{ id?: string; incidentId?: string; reason?: string }>;
   };

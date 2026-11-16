@@ -23,6 +23,8 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      # Build packages first so workspace typecheck can resolve @neverdown/* dist types.
+      - run: pnpm --filter @neverdown/core build && pnpm --filter @neverdown/sdk build
       - run: pnpm typecheck
       - run: pnpm build
       - run: pnpm test
@@ -38,6 +40,7 @@ jobs:
         with:
           node-version: 22
       - run: npm install
+      - run: npm run build --workspace=@neverdown/core && npm run build --workspace=@neverdown/sdk
       - run: npm run typecheck
       - run: npm run build
       - run: npm test

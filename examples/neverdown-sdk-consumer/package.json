@@ -14,7 +14,7 @@
     "lint": "echo \"ok\""
   },
   "dependencies": {
-    "@neverdown/sdk": "workspace:*"
+    "@neverdown/sdk": "0.1.0"
   },
   "devDependencies": {
     "@types/node": "^22.15.0",
